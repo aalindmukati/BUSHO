@@ -27,8 +27,6 @@ From the project directory:
 node server.mjs
 ```
 
-Open [http://127.0.0.1:4173](http://127.0.0.1:4173).
-
 The built-in server serves the static application without external dependencies or APIs.
 
 ## Suggested demo journey
