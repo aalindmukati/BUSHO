@@ -1,0 +1,14 @@
+# Local and environmental files
+.env
+.env.*
+!.env.example
+node_modules/
+work/
+coverage/
+.DS_Store
+Thumbs.db
+
+# Local editor and OS metadata
+.vscode/
+.idea/
+*.local
