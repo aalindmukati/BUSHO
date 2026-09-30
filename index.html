@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BUSHO | First-mile health reporting</title>
+    <meta name="description" content="BUSHO turns ordinary frontline health reports into verified operational action." />
+    <link rel="stylesheet" href="styles-v2.css?phase=6" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark"><span></span><span></span><span></span></div>
+          <div>
+            <div class="brand-name">BUSHO</div>
+          <div class="brand-subtitle">BOTTOM-UP SMART HEALTH ORCHESTRATOR</div>
+          </div>
+        </div>
+        <div class="topbar-center">
+          <span class="live-dot"></span>
+          <span>Demo workspace</span>
+          <span class="topbar-divider"></span>
+          <span class="muted">Synthetic data only</span>
+          <button class="reset-btn" id="reset-demo" type="button">Reset demo data</button>
+        </div>
+        <button class="profile-pill" id="profile-control" type="button" title="Authentication is not implemented in this demo" aria-label="Demo profile. Authentication is not implemented">
+          <div class="avatar">AS</div>
+          <div class="profile-copy"><strong>Anita Singh</strong><span>CHO · Rampur HWC</span></div>
+          <span class="chevron">⌄</span>
+        </button>
+      </header>
+
+      <main>
+        <section class="hero-section">
+          <div class="hero-grid">
+          <div class="hero-copy">
+              <div class="eyebrow"><span class="eyebrow-line"></span>FIRST-MILE REPORTING</div>
+              <h1>Turn field notes into <em>verified action.</em></h1>
+              <p class="hero-lede">Turn field notes into structured drafts for human review and operational follow-up.</p>
+              <div class="hero-tags"><span class="tag tag-teal">Human verification</span><span class="tag tag-neutral">Synthetic demo</span></div>
+            </div>
+            <div class="hero-quote">
+              <div class="quote-label">A message from the field</div>
+              <p>“Today we saw 12 patients with fever and 8 with diarrhea. We have only 20 ORS packets left, and our iron tablets are almost finished.”</p>
+              <div class="quote-meta"><span class="status-dot"></span> Synthetic report / Rampur HWC / just now</div>
+            </div>
+          </div>
+          <div class="journey-rail" aria-label="BUSHO reporting journey">
+            <div class="journey-step active"><span class="journey-num">01</span><div><strong>Report</strong><small>Worker’s own words</small></div></div>
+            <div class="journey-connector"></div>
+            <div class="journey-step active"><span class="journey-num">02</span><div><strong>Extract</strong><small>AI draft, not a fact</small></div></div>
+            <div class="journey-connector"></div>
+            <div class="journey-step active"><span class="journey-num">03</span><div><strong>Verify</strong><small>Worker stays in control</small></div></div>
+            <div class="journey-connector"></div>
+            <div class="journey-step" id="journey-action"><span class="journey-num">04</span><div><strong>Act</strong><small>Admin responds safely</small></div></div>
+          </div>
+        </section>
+
+        <section class="workspace-section">
+          <div class="console-bar" aria-label="Active workspace context">
+            <div class="console-context"><span class="console-kicker">ACTIVE FACILITY</span><strong>Rampur HWC</strong><span>Rampur block / synthetic demo data</span></div>
+            <div class="console-meta"><span class="status-mark"></span> Local demo mode</div>
+          </div>
+          <div class="workspace-head">
+            <div>
+              <div class="section-kicker">BUSHO OPERATIONS CONSOLE</div>
+              <h2>Today's reporting desk</h2>
+            </div>
+            <div class="role-switch" role="tablist" aria-label="Switch prototype view">
+              <button class="role-btn active" data-view="worker" role="tab">Worker console</button>
+              <button class="role-btn" data-view="admin" role="tab">Admin overview <span class="mini-badge" id="admin-badge">1</span></button>
+            </div>
+          </div>
+
+          <div class="view-panel active" id="worker-view">
+            <div class="panel-intro">
+              <div class="intro-icon worker-icon">01</div>
+              <div><h3>Frontline reporting</h3><p>Speak naturally. Review what BUSHO understood before you confirm it.</p></div>
+              <div class="connection-state"><span class="status-mark"></span> Local demo mode</div>
+            </div>
+            <div class="worker-grid">
+              <div class="conversation-card card">
+                <div class="card-head"><div><span class="card-overline">STEP 1 · REPORT</span><h3>Send a field update</h3></div><span class="channel-chip">TEXT / VOICE</span></div>
+                <div class="message-bubble incoming"><div class="bubble-author"><span class="small-avatar">AS</span><span>Anita · Rampur HWC</span><span class="bubble-time">10:42 AM</span></div><p id="message-text">Today we saw 12 patients with fever and 8 with diarrhea. We have only 20 ORS packets left, and our iron tablets are almost finished.</p></div>
+                <div class="composer"><textarea id="report-input" aria-label="Field report">Today we saw 12 patients with fever and 8 with diarrhea. We have only 20 ORS packets left, and our iron tablets are almost finished.</textarea><div class="composer-actions"><button class="secondary-btn voice-button" title="Voice input is simulated in this prototype" aria-label="Voice input demo">Voice input / demo</button><div class="quick-actions"><button class="quick-btn" data-sample="routine">Routine report</button><button class="quick-btn" data-sample="ambiguous">Ambiguous report</button></div><button class="primary-btn" id="extract-btn">Extract report</button></div></div>
+                <div class="privacy-note">No names, phone numbers or diagnoses are collected.</div>
+              </div>
+
+              <div class="extraction-card card">
+                <div class="card-head"><div><span class="card-overline">STEP 2 · AI DRAFT</span><h3>What BUSHO heard</h3></div><span class="draft-chip" id="draft-chip">Awaiting extraction</span></div>
+                <div class="provisional-banner" id="provisional-banner"><span class="banner-icon">i</span><div><strong>AI-extracted information is provisional</strong><span>Review each field. Nothing is committed until you confirm.</span></div></div>
+                <div class="extraction-list" id="extraction-list">
+                  <div class="empty-extraction"><div class="empty-orbit">Draft</div><strong>Run extraction to create a review draft</strong><span>Fields stay provisional until you confirm them.</span></div>
+                </div>
+                <div class="extraction-footer" id="extraction-footer"><span class="confidence-key"><i class="confidence-high"></i> high confidence <i class="confidence-review"></i> needs review</span><span class="engine-label">Mock extraction engine · schema validated</span></div>
+              </div>
+            </div>
+            <div class="verification-bar hidden" id="verification-bar"><div><span class="card-overline">STEP 3 / HUMAN VERIFICATION</span><strong>Does this look right for today’s report?</strong><small>Confirmation creates a verified operational record. BUSHO does not diagnose.</small><div class="draft-feedback" id="draft-feedback" role="alert" aria-live="polite"></div></div><div class="verification-actions"><button class="secondary-btn" id="edit-btn" type="button">Edit fields</button><button class="primary-btn" id="confirm-btn" type="button">Confirm report</button></div></div>
+          </div>
+
+          <div class="view-panel" id="admin-view">
+            <div class="panel-intro"><div class="intro-icon admin-icon">02</div><div><h3>Operational command view</h3><p>Respond to verified stock signals with clear context and human approval.</p></div><div class="connection-state"><span class="status-mark"></span> Local demo mode / browser-local state</div></div>
+            <div class="priority-alert"><div><span class="priority-label">PRIORITY REVIEW</span><strong>Reported fever signal at Rampur HWC</strong></div><span>+38% mentions / health trend only</span><span class="alert-state">Needs review</span></div>
+            <div class="metric-grid"><div class="metric-card"><span class="metric-label">Reports received</span><strong id="reports-count">18</strong><span class="metric-trend positive" id="reports-trend">Synthetic baseline</span></div><div class="metric-card"><span class="metric-label">Awaiting confirmation</span><strong id="pending-count">1</strong><span class="metric-trend warning" id="pending-trend">Needs worker review</span></div><div class="metric-card"><span class="metric-label">Low-stock medicines</span><strong id="low-stock-count">2</strong><span class="metric-trend critical">At Rampur HWC</span></div><div class="metric-card accent-metric"><span class="metric-label">Potential stockout</span><strong>48h</strong><span class="metric-trend">ORS · based on reported use</span></div></div>
+            <div class="admin-grid">
+              <div class="trend-card card"><div class="card-head"><div><span class="card-overline">HEALTH SIGNAL REVIEW</span><h3>Reported symptoms in context</h3></div><span class="review-chip">Needs review</span></div><div class="trend-signal"><div class="trend-number">+38<span>%</span></div><div><strong>Fever mentions at Rampur HWC</strong><p>Compared with the previous 7-day reporting period</p></div></div><div class="micro-chart"><div class="chart-axis"><span>Sep 24</span><span>Today</span></div><div class="bars"><i style="height:31%"></i><i style="height:38%"></i><i style="height:27%"></i><i style="height:48%"></i><i style="height:45%"></i><i style="height:64%"></i><i class="bar-hot" style="height:84%"></i></div></div><div class="safety-callout"><div><strong>Reported health trend</strong><p>This is a signal for human review. It does not confirm a medical event or outbreak.</p></div></div></div>
+              <div class="inventory-card card"><div class="card-head"><div><span class="card-overline">INVENTORY INTELLIGENCE</span><h3>Stock that needs attention</h3></div><button class="text-btn" id="view-inventory">View all</button></div><div class="inventory-row"><div class="medicine-icon ors">ORS</div><div class="medicine-copy"><strong>ORS packets</strong><span>Rampur HWC / reported 2m ago</span></div><div class="stock-meter"><div class="meter-label"><span>20 / 50</span><b>40%</b></div><div class="meter"><i style="width:40%"></i></div></div><span class="severity critical">Critical</span></div><div class="inventory-row"><div class="medicine-icon ifa">Fe</div><div class="medicine-copy"><strong>Iron and folic acid</strong><span>Rampur HWC / reported 2m ago</span></div><div class="stock-meter"><div class="meter-label"><span>14 / 60</span><b>23%</b></div><div class="meter"><i style="width:23%"></i></div></div><span class="severity warning">Low</span></div><div class="inventory-row"><div class="medicine-icon zinc">Zn</div><div class="medicine-copy"><strong>Zinc tablets</strong><span>Rampur HWC / local demo state, yesterday</span></div><div class="stock-meter"><div class="meter-label"><span>72 / 100</span><b>72%</b></div><div class="meter"><i class="safe-meter" style="width:72%"></i></div></div><span class="severity safe">Healthy</span></div></div>
+            </div>
+            <div class="admin-response hidden" id="admin-response"><div class="response-icon">Saved</div><div><span class="card-overline">ADMIN ACTION / DRAFT ONLY</span><strong id="admin-action-title">Verified report available for admin review</strong><p id="admin-action-copy">Open inventory and choose a low-stock item to create a replenishment draft. No purchase order is created by this demo.</p><button class="secondary-btn admin-approve" id="approve-replenishment" type="button" disabled>Approve draft</button></div><span class="draft-status" id="admin-action-status">Awaiting admin action</span></div>
+            <div class="inventory-drawer hidden" id="inventory-drawer" role="dialog" aria-modal="true" aria-labelledby="inventory-title"><div class="drawer-head"><div><span class="card-overline">SYNTHETIC INVENTORY</span><h3 id="inventory-title">Inventory detail</h3></div><button class="text-btn" id="close-inventory" type="button">Close</button></div><p class="drawer-note">Demo inventory only. Drafting an item prepares an approval record; it does not place an order.</p><div class="inventory-detail-list" id="inventory-detail-list"></div></div>
+          </div>
+        </section>
+
+        <section class="guardrails-section">
+          <div class="guardrails-heading"><div class="eyebrow"><span class="eyebrow-line"></span>BUILT-IN GUARDRAILS</div><h2>Clear states make the product trustworthy.</h2><p>BUSHO shows the worker report, the human verification step, and the administrator response as separate records.</p></div>
+            <div class="guardrail-grid"><div class="guardrail-card reported"><div class="state-top"><span class="state-label">STATE 01</span><span class="state-pill">Unverified</span></div><h3>Reported health trend</h3><p>“More fever mentions this week.” A field signal for review, with its source and context attached.</p><div class="state-footer"><span>Source: anonymized worker reports</span></div></div><div class="guardrail-card confirmed"><div class="state-top"><span class="state-label">STATE 02</span><span class="state-pill">Requires evidence</span></div><h3>Confirmed medical event</h3><p>A clinical conclusion requires an authorized review process. BUSHO keeps that decision outside the extraction flow.</p><div class="state-footer"><span>Clinical review remains human-led</span></div></div><div class="guardrail-card action"><div class="state-top"><span class="state-label">STATE 03</span><span class="state-pill">Requires approval</span></div><h3>Administrative action</h3><p>Inventory responses can be drafted from verified stock data. An authorized administrator approves the request.</p><div class="state-footer"><span>Draft request, pending approval</span></div></div></div>
+        </section>
+      </main>
+      <footer class="footer"><span>BUSHO prototype / Code for Communities 2.0</span><span>Two-minute demo / Synthetic data <span class="footer-links"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></span></span></footer>
+    </div>
+    <div class="toast" id="toast" role="status"><span class="toast-icon">✓</span><span id="toast-text">Ready</span></div>
+    <script src="app-v2.js?phase=7"></script>
+  </body>
+</html>
